@@ -10,7 +10,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       await fastifyApp.ready();
     }
 
-    // repassa a request pro fastify
+    // repassa a request pro fastify para o vercel
     fastifyApp.server.emit('request', req, res);
   } catch (err) {
     console.error('Fastify error:', err);
