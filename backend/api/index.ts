@@ -1,7 +1,11 @@
-import fastifyApp from "../src/index";
+import { buildApp } from "../src/app.js";
 
-// Handler para Vercel (converte Fastify em função serverless)
+let fastifyApp: any;
+
 export default async function handler(req: any, res: any) {
-  await fastifyApp.ready(); // garante que o app inicializou
-  fastifyApp.server.emit('request', req, res);
+  if (!fastifyApp) {
+    fastifyApp = await buildApp();
+    await fastifyApp.ready();
+  }
+  fastifyApp.server.emit("request", req, res);
 }
