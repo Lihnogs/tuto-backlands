@@ -59,11 +59,11 @@ import { authenticateSimple } from './middleware/auth-simple.js';
 fastify.decorate('authenticate', authenticateSimple);
 
 // Register routes
-await fastify.register(authWorkingRoutes, { prefix: '/api/auth' });
-await fastify.register(usersRoutes, { prefix: '/api/users' });
-await fastify.register(chatSimpleRoutes, { prefix: '/api/chat' });
-await fastify.register(codeAnalysisSimpleRoutes, { prefix: '/api/code-analysis' });
-await fastify.register(uploadRoutes, { prefix: '/api/upload' });
+await fastify.register(authWorkingRoutes, { prefix: '/auth' });
+await fastify.register(usersRoutes, { prefix: '/users' });
+await fastify.register(chatSimpleRoutes, { prefix: '/chat' });
+await fastify.register(codeAnalysisSimpleRoutes, { prefix: '/code-analysis' });
+await fastify.register(uploadRoutes, { prefix: '/upload' });
 
 // Health check endpoint
 fastify.get('/health', async () => {
@@ -72,7 +72,7 @@ fastify.get('/health', async () => {
 
 // Debug endpoint (only in development)
 if (process.env.NODE_ENV !== 'production') {
-  fastify.get('/api/debug/env', async () => {
+  fastify.get('/debug/env', async () => {
     return {
       DATABASE_URL: process.env.DATABASE_URL ? 'Set' : 'Not set',
       JWT_SECRET: process.env.JWT_SECRET ? 'Set' : 'Not set',
@@ -85,18 +85,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Start server
-const start = async () => {
-  try {
-    const port = parseInt(process.env.PORT || '3000');
-    const host = process.env.HOST || '0.0.0.0';
-    
-    await fastify.listen({ port, host });
-    console.log(`🚀 Server running on http://${host}:${port}`);
-    console.log(`📚 API Documentation available at http://${host}:${port}/docs`);
-  } catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-};
-
-start();
+export default fastify;
