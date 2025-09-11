@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { buildApp } from '../dist/app.js'; // usa o build, não src
+import { buildApp } from '../src/app.js'; // usa o build, não src
 
 let fastifyApp: any;
 
