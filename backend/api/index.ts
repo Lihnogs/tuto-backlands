@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { buildApp } from '../src/app.js';
+import { buildApp } from '../dist/app.js'; // usa o build, não src
 
 let fastifyApp: any;
 
@@ -9,8 +9,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       fastifyApp = await buildApp();
       await fastifyApp.ready();
     }
-
-    // repassa a request pro fastify para o vercel
     fastifyApp.server.emit('request', req, res);
   } catch (err) {
     console.error('Fastify error:', err);

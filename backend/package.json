@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch --tsconfig tsconfig.dev.json src/index.ts",
-    "build": "tsc -p tsconfig.build.json --skipLibCheck --noEmitOnError false || echo 'Build completed with warnings'",
+    "build": "tsc -p tsconfig.build.json",
     "start": "node dist/index.js",
     "lint": "eslint src/**/*.ts",
     "test": "jest",

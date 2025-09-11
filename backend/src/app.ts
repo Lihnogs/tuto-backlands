@@ -6,16 +6,16 @@ import swaggerUi from '@fastify/swagger-ui';
 import dotenv from 'dotenv';
 
 // Import routes
-import authWorkingRoutes from './routes/auth-working.ts';
-import usersRoutes from './routes/users.ts';
-import chatSimpleRoutes from './routes/chat-simple.ts';
-import codeAnalysisSimpleRoutes from './routes/code-analysis-simple.ts';
-import uploadRoutes from './routes/upload.ts';
+import authWorkingRoutes from './routes/auth-working.js';
+import usersRoutes from './routes/users.js';
+import chatSimpleRoutes from './routes/chat-simple.js';
+import codeAnalysisSimpleRoutes from './routes/code-analysis-simple.js';
+import uploadRoutes from './routes/upload.js';
 
 // Import plugins
-import { dbPlugin } from './plugins/database.ts';
-import { swaggerOptions, swaggerUiOptions } from './utils/swagger.ts';
-import { authenticateSimple } from './middleware/auth-simple.ts';
+import { dbPlugin } from './plugins/database.js';
+import { swaggerOptions, swaggerUiOptions } from './utils/swagger.js';
+import { authenticateSimple } from './middleware/auth-simple.js';
 
 dotenv.config({ path: '.env' });
 
