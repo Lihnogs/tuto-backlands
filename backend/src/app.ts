@@ -10,7 +10,7 @@ import authWorkingRoutes from './routes/auth-working.js';
 import usersRoutes from './routes/users.js';
 import chatSimpleRoutes from './routes/chat-simple.js';
 import codeAnalysisSimpleRoutes from './routes/code-analysis-simple.js';
-import uploadRoutes from './routes/upload.js';
+import uploadSimpleRoutes from './routes/upload-simple.js';
 
 // Import plugins
 import { dbPlugin } from './plugins/database.js';
@@ -36,7 +36,7 @@ export async function buildApp() {
   await fastify.register(usersRoutes, { prefix: '/users' });
   await fastify.register(chatSimpleRoutes, { prefix: '/chat' });
   await fastify.register(codeAnalysisSimpleRoutes, { prefix: '/code-analysis' });
-  await fastify.register(uploadRoutes, { prefix: '/upload' });
+  await fastify.register(uploadSimpleRoutes, { prefix: '/upload' });
 
   fastify.get('/health', async () => {
     return { status: 'ok', timestamp: new Date().toISOString() };
