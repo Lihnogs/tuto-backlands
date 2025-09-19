@@ -38,6 +38,24 @@ export async function buildApp() {
   await fastify.register(codeAnalysisSimpleRoutes, { prefix: '/code-analysis' });
   await fastify.register(uploadSimpleRoutes, { prefix: '/upload' });
 
+  // Rota raiz
+  fastify.get('/', async () => {
+    return { 
+      message: '🚀 Code Tutor Backend API está funcionando!',
+      status: 'ok', 
+      timestamp: new Date().toISOString(),
+      version: '1.0.0',
+      endpoints: {
+        health: '/health',
+        auth: '/auth',
+        users: '/users',
+        chat: '/chat',
+        upload: '/upload',
+        docs: '/documentation'
+      }
+    };
+  });
+
   fastify.get('/health', async () => {
     return { status: 'ok', timestamp: new Date().toISOString() };
   });
